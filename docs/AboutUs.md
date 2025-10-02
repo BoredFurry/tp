@@ -29,12 +29,12 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Integration, Scheduling and Tracking
 * Responsibilities: Model, Storage
 
-### Johnny Doe
+### Zaki
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/puntart.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/puntart)] 
+[[portfolio](team/puntart.md)]
 
-* Role: Developer
-* Responsibilities: Data
-
+* Role: Team Lead
+* Responsibilities: Deliverable and deadlines, Code quality, ui, commons, IntelliJ expert
