@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lim Kian Ian
 
-<img src="docs/images/boredfurry.png" width="200px">
+<img src="images/boredfurry.png" width="200px">
 
 [[github](https://github.com/BoredFurry)]
 [[portfolio](team/johndoe.md)]
