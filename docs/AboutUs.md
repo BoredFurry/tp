@@ -9,25 +9,25 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Isaac Lai Yin Chung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eyexactly.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/eyexactly)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Documentation, Testing, Logic 
 
-### Jane Doe
+### Lim Kian Ian
 
-<img src="images/johndoe.png" width="200px">
+<img src="docs/images/boredfurry.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/BoredFurry)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Integration, Scheduling and Tracking
+* Responsibilities: Model, Storage
 
 ### Zaki
 
