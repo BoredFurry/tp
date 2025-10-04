@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Isaac Lai Yin Chung
 
-<img src="images/eyexactly.png" width="200px">
+<img src="images/isaacyclai.png" width="200px">
 
 [[github](https://github.com/eyexactly)]
 [[portfolio](team/johndoe.md)]
