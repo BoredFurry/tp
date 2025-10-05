@@ -275,14 +275,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                   | I want to …​                                                                      | So that I can…​                                                                       |
+|----------|-------------------------------------------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| `* * *`  | Student volunteer                         | search up my own contact                                                          | know which tuition centre and tutee I have been assigned to                           |
+| `* * *`  | Beneficiary                               | search for the students that are assigned to my location                          | be prepared and accommodate them to the best of my ability                            |
+| `* * *`  | Administrator                             | sort the contacts by categories                                                   | know what role my contacts play                                                       |
+| `* * *`  | Administrator                             | tag mentees to mentors                                                            | keep track of who the mentors are mentoring                                           |
+| `* * *`  | Experienced user                          | remove contacts easily                                                            | have a smaller list of contacts to utilize                                            |
+| `* * *`  | Beneficiary                               | add student contacts                                                              | easily add to the list of students that require tutoring                              |
+| `* *`    | Administrator                             | edit my personnel’s contacts                                                      | their entries if their contact details change                                         |
+| `* *`    | Staff member of a partner school          | obtain a list of tutees and their corresponding matched tutors                    | inform my students who their tutor is                                                 | 
+| `* *`    | Manpower admin                            | sort the tutors and tutees by the centres they are deployed in                    | ensure each location receives enough students                                         |
+| `* *`    | Parent of the tutee                       | identify which student is attached to my child                                    | communicate with them the needs of the child and track the progress of their learning |
+| `* *`    | Administrator                             | keep track of which subjects my tutors are able to teach and tutees need help for | match them up appropriately                                                           |
+| `* *`    | Student volunteer                         | track my students’ grades                                                         | Have an estimate of whether my work has helped them improve                           |
+| `*`      | Director of outreach                      | identify patterns within the tutor sign-up rate                                   | better understand the demographic that is receptive to the publicity                  |
+| `*`      | Administrator                             | sort by my contacts’ location                                                     | best assign the mentors to the mentees                                                |
+| `*`      | Administrator                             | track the status of my donors’ payments and payments to vendors                   | know who I need to continue completing financial transactions with                    |
+| `*`      | Student volunteer                         | monitor the number of students and tutors at each centre                          | match these against my location preferences                                           |
+| `*`      | First time user                           | transfer my contacts easily to the application                                    | not have to add all of them one by one                                                |
+| `*`      | Teacher from a volunteer student’s school | keep track of the number of hours that they volunteered for                       | easily tally their VIA hours                                                          |
+| `*`      | Fair administrator                        | flag if a mentor has too many mentees                                             | ensure that they are not overbooked                                                   |
+
+
 
 *{More to be added}*
 
