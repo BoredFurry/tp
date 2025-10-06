@@ -443,7 +443,7 @@ Use case ends
 2. Only the administrators have the ability to make edits to the system
 3. The system should only store tutor and tutee information
 4. The system should launch in under 2 seconds
-5. The system should add the contact to the address book in a reasonable amount of time, no less than 100ms
+5. The system should add the contact to the address book in a reasonable amount of time, no more than 200ms
 6. The system should filter and return the list is no more than 5 seconds
 7. The system needs to work with older operating systems as NGOs may not have the latest versions. Minimally Windows 7 onwards, macOS 13 onwards, Linux Ubuntu 20 onwards
 8. The system should have identical behaviour across Windows, macOS and Linux
@@ -451,7 +451,12 @@ Use case ends
 10. The system needs to be able to handle name conflicts (where 2 people share the same name) during searches
 11. The system should account for the possibility that 2 inputs can be exactly the same
 12. The system should be easy to understand for a novice user that prefers a CLI
-13. The system should not allow the upload of images for privacy reasons
+13. The system should not support the upload of images for privacy reasons
+14. The system should store the data locally on the user's device
+15. The system only needs to handle input for 1 user at a given time
+16. The system should work on a computer that has a version of java 17
+17. The GUI of the system needs to work for screens with resolution of at least 1280x720 and higher
+18. The system should be PDF friendly
 
 *{More to be added}*
 
