@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -260,6 +260,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
+**Target user**: Peer tutoring NGOs such as Heartware Network
+
 **Target user profile**:
 
 * has a need to manage a significant number of contacts
@@ -268,7 +270,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Students from various institutions are deployed to tuition centres and schools across Singapore. Administrators struggle to track student and tutee information, making it hard to organise volunteers, monitor deployments, and identify understaffed schools. A proper system helps manage student details and ensure adequate support at beneficiary schools.
 
 
 ### User stories
@@ -303,45 +305,167 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Mentorface` unless specified otherwise)
 
-**Use case: Delete a person**
 
-**MSS**
+### Use case: U01 - Adding person to Mentorface
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+#### Actor: Administrator
+#### MSS:
+1. Administrator enters the information of the person they wish to add
+2. Mentorface notifies the administrator that the person has been added
 
-    Use case ends.
+Use case ends
 
-**Extensions**
+#### Extension:
 
-* 2a. The list is empty.
+#### 1a. Mentorface detects that the Administrator has given the information of the person in the incorrect format
 
-  Use case ends.
+1a1. Mentorface informs the user of the format error and shows the administrator an example of the correct format
 
-* 3a. The given index is invalid.
+1a2. Administrator enters the information of the person they wish to add again
 
-    * 3a1. AddressBook shows an error message.
+Steps 1a1 and 1a2 repeats until Mentorface no longer detects an error with the input
 
-      Use case resumes at step 2.
+1a3. Mentorface notifies the administrator that the person has been added
+
+Use case ends
+
+#### Use case: U02 - Delete person from Mentorface
+
+#### Actor: Administrator
+
+#### MSS:
+1. Administrator provides the input to delete a specified person from Mentorface
+2. Mentorface deletes the person from the list and notifies the Administrator that the person has been deleted
+
+Use case ends
+
+#### Extension:
+
+#### 1a. Mentorface detects that the administrator a person that does not exist in the list
+
+1a1. Mentorface informs the administrator that the person they have specified does not exist, as well as the format the administrator should use when deleting people
+
+1a2. Administrator enters the information of the person they wish to delete again
+
+Steps 1a1 and 1a2 repeats until Mentorface can find the person specified by the administrator.
+
+1a3. Mentorface deletes the person from the list and notifies the Administrator that the person has been deleted
+
+Use case ends
+
+#### Use case: U03 - Find a person in Mentorface
+
+#### Actor: User
+
+#### Person: Administrator, Tutor, Tutee
+
+#### MSS:
+1. User provides the input to find a specified person from Mentorface
+2. Mentorface finds the person from the list and shows the user the information associated with the person
+
+Use case ends
+
+#### Extension:
+#### 1a. Mentorface detects that the administrator has provided the information for a person that does not exist in the list
+
+1a1. Mentorface informs the administrator that the person they have specified does not exist, as well as the format the administrator should use when finding people
+
+1a2. Administrator enters the information of the person they wish to find again
+
+Steps 1a1 and 1a2 repeats until Mentorface can find the person specified by the administrator.
+
+1a3. Mentorface finds the person from the list and shows the user the information associated with the person
+
+Use case ends
+
+#### Use case: U04 - Match a person from Mentorface to another person from Mentorface
+
+#### Actor: Administrator
+
+#### MSS:
+1. Administrator inputs the 2 people that they want to match into Mentorface
+2. Mentorface adds a tag to indicate that these 2 people have been matched and notifies the administrator that the match was successful
+
+Use case ends
+
+#### Extension:
+#### 1a. Mentorface detects that the administrator has provided the information for people that do not exist in the list
+1a1. Mentorface informs the administrator that the people they have specified do not exist, as well as the format the administrator should use when matching people
+
+1a2. Administrator enters the information of the people they wish to match again
+
+Steps 1a1 and 1a2 repeats until Mentorface can find the people specified by the administrator.
+
+1a3. Mentorface adds a tag to indicate that these 2 people have been matched and notifies the administrator that the match was successful
+
+Use case ends
+
+#### Use case: U05 - Editing the information of a person in Mentorface
+
+#### Actor: Administrator
+
+#### MSS:
+1. Administrator provides the person they wish to change and the information they want changed
+2. Mentorface makes the changes to the person and notifies the administrator that the information has been updated.
+
+Use case ends
+
+#### Extension:
+#### 1a. Mentorface is unable to find the person that the administrator specified
+1a1. Mentorface informs the user that the person they have specified does not exist
+
+1a2. Administrator enters information and person they want edited again
+
+Steps 1a1 and 1a2 repeats until Mentorface can find the person and there is no error with the format of the input
+
+1a3. Mentorface notifies the administrator that the person’s information has been edited
+
+Use case ends
+
+#### 1b. Mentorface detects that the administrator has provided information in the incorrect format
+1b1. Mentorface informs the user that the format they have provided for the person is incorrect and shows them an example of the correct format
+
+1b2. Administrator enters information and person they want edited again
+
+Steps 1b1 and 1b2 repeats until Mentorface can find the person and there is no error with the format of the input
+
+1b3. Mentorface notifies the administrator that the person’s information has been edited
+
+Use case ends
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. The system should be based on the current implementation of AB3 without deviating too much.
+2. Only the administrators have the ability to make edits to the system
+3. The system should only store tutor and tutee information
+4. The system should launch in under 2 seconds
+5. The system should add the contact to the address book in a reasonable amount of time, no less than 100ms
+6. The system should filter and return the list is no more than 5 seconds
+7. The system needs to work with older operating systems as NGOs may not have the latest versions. Minimally Windows 7 onwards, macOS 13 onwards, Linux Ubuntu 20 onwards
+8. The system should have identical behaviour across Windows, macOS and Linux
+9. The system needs to be able to store a large amount of contacts (at least 1000 inputs)
+10. The system needs to be able to handle name conflicts (where 2 people share the same name) during searches
+11. The system should account for the possibility that 2 inputs can be exactly the same
+12. The system should be easy to understand for a novice user that prefers a CLI
+13. The system should not allow the upload of images for privacy reasons
 
 *{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Administrator**: The person in charge of the operations and logistics related to the functions of the NGO
+* **Beneficiary**: An organisation (not necessarily a school) that is receiving help from the NGO in the form of tutoring services provided by the NGO
+* **Tutor**: A student volunteer from a participating institution
+* **Tutee**: A student from the beneficiary that is receiving the help from the tutor
+* **Donor**: An organisation or individual that helps fund the NGO
+* **Access Level**: The degree of permission a user has to update the system
+* **NGO**: Abbreviation for non-government organisations
+
+*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
