@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Documentation, Testing, Logic 
+* Responsibilities: Documentation, Testing, Logic
 
 ### Lim Kian Ian
 
@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/puntart.png" width="200px">
 
-[[github](http://github.com/puntart)] 
+[[github](http://github.com/puntart)]
 [[portfolio](team/puntart.md)]
 
 * Role: Team Lead
