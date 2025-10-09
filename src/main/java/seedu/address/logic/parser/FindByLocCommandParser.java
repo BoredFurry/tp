@@ -2,12 +2,12 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Arrays;
+
 import seedu.address.logic.commands.FindByLocCommand;
 import seedu.address.logic.commands.FindByNameCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
-
-import java.util.Arrays;
 
 /**
  * Parses input arguments and creates a new {@code FindByLocCommand} object
