@@ -26,7 +26,7 @@ public class FindByLocCommandParserTest {
         // no leading and trailing whitespaces
         FindByLocCommand expectedFindByLocCommand =
                 new FindByLocCommand(new AddressContainsKeywordsPredicate(Arrays.asList("Geylang", "Serangoon")));
-        assertParseSuccess(parser, "Geylang Bob", expectedFindByLocCommand);
+        assertParseSuccess(parser, "Geylang Serangoon", expectedFindByLocCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n Geylang \n \t Serangoon  \t", expectedFindByLocCommand);
