@@ -43,7 +43,7 @@ public class AddressContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_AddressContainsKeywords_returnsTrue() {
+    public void test_addressContainsKeywords_returnsTrue() {
         // One keyword
         AddressContainsKeywordsPredicate predicate =
                 new AddressContainsKeywordsPredicate(Collections.singletonList("Geylang"));
@@ -63,7 +63,7 @@ public class AddressContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_AddressDoesNotContainKeywords_returnsFalse() {
+    public void test_addressDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         AddressContainsKeywordsPredicate predicate = new AddressContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withAddress("Geylang").build()));
