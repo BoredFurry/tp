@@ -331,7 +331,7 @@ Steps 1a1 and 1a2 repeats until Mentorface no longer detects an error with the i
 
 Use case ends
 
-#### Use case: U02 - Delete person from Mentorface
+### Use case: U02 - Delete person from Mentorface
 
 #### Actor: Administrator
 
@@ -355,7 +355,7 @@ Steps 1a1 and 1a2 repeats until Mentorface can find the person specified by the 
 
 Use case ends
 
-#### Use case: U03 - Find a person in Mentorface
+### Use case: U03 - Find a person in Mentorface
 
 #### Actor: User
 
@@ -380,7 +380,7 @@ Steps 1a1 and 1a2 repeats until Mentorface can find the person specified by the 
 
 Use case ends
 
-#### Use case: U04 - Match a person from Mentorface to another person from Mentorface
+### Use case: U04 - Match a person from Mentorface to another person from Mentorface
 
 #### Actor: Administrator
 
@@ -402,7 +402,7 @@ Steps 1a1 and 1a2 repeats until Mentorface can find the people specified by the 
 
 Use case ends
 
-#### Use case: U05 - Editing the information of a person in Mentorface
+### Use case: U05 - Editing the information of a person in Mentorface
 
 #### Actor: Administrator
 
