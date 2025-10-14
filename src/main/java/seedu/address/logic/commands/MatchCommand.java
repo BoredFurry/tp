@@ -39,8 +39,8 @@ public class MatchCommand extends Command {
 
         Person mentorToMatch = lastShownList.get(mentor.getZeroBased());
         Person studentToMatch = lastShownList.get(student.getZeroBased());
-        if (!mentorToMatch.getRole().toString().equals("mentor")
-                || !studentToMatch.getRole().toString().equals("student")) {
+        if (!mentorToMatch.getClass().getName().equals("mentor")
+                || !studentToMatch.getClass().getName().toString().equals("student")) {
             throw new CommandException(Messages.MESSAGE_INVALID_ROLES_MATCHED);
         }
 
