@@ -24,11 +24,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Mentor;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Role;
+import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -103,12 +105,24 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Role updateRole = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
         Remark updatedRemark = personToEdit.getRemark();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updateRole,
-                updatedRemark, updatedTags);
+        Role updateRole = editPersonDescriptor.getRole().orElse(new Role(personToEdit.getClass().getName()));
+        Person person;
+
+        switch (updateRole.toString()) {
+        case "Mentor":
+            person = new Mentor(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+            break;
+        case "Student":
+            person = new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+            break;
+        default:
+            person = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        }
+
+        return person;
     }
 
     @Override
@@ -166,7 +180,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, role, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -205,7 +219,7 @@ public class EditCommand extends Command {
             this.role = role;
         }
 
-        public Optional<Role> getRole() {
+        private Optional<Role> getRole() {
             return Optional.ofNullable(role);
         }
 
@@ -242,7 +256,6 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(role, otherEditPersonDescriptor.role)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -253,7 +266,6 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
-                    .add("role", role)
                     .add("tags", tags)
                     .toString();
         }
