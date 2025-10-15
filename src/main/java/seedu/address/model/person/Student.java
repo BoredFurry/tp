@@ -8,6 +8,8 @@ import java.util.Set;
 
 public class Student extends Person {
 
+    private final Centre centre;
+
     /**
      * Every field must be present and not null.
      *
@@ -17,8 +19,40 @@ public class Student extends Person {
      * @param address
      * @param remark
      * @param tags
+     * @param centre
      */
-    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
+    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, Centre centre) {
         super(name, phone, email, address, remark, tags);
+        this.centre = centre;
+    }
+
+    public Centre getCentre() {
+        return centre;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof Student
+                && super.equals(other)
+                && centre.equals(((Student) other).centre));
+    }
+
+    @Override
+    public int hashCode() {
+        return centre.hashCode() ^ super.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("name", getName())
+                .add("phone", getPhone())
+                .add("email", getEmail())
+                .add("address", getAddress())
+                .add("remark", getRemark())
+                .add("tags", getTags())
+                .add("centre", centre)
+                .toString();
     }
 }

@@ -11,12 +11,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Centre;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Mentor;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Role;
+import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,6 +34,8 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String remark;
+    private final String centre;
+    private final String role;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -39,13 +44,16 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("role") String remark,
+                             @JsonProperty("remark") String remark, @JsonProperty("role") String role,
+                             @JsonProperty("centre") String centre,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
+        this.role = role;
+        this.centre = centre;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -60,6 +68,16 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         remark = source.getRemark().value;
+        if (source instanceof Student) {
+            role = "Student";
+            centre = ((Student) source).getCentre().toString();
+        } else if (source instanceof Mentor) {
+            role = "Mentor";
+            centre = ((Mentor) source).getCentre().toString();
+        } else {
+            role = "Person";
+            centre = Centre.DEFAULT_CENTRE.toString();
+        }
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -114,7 +132,27 @@ class JsonAdaptedPerson {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
-    }
+        final String safeRole;
+        if (role == null) {
+            safeRole = "Person";
+        } else {
+            safeRole = role;
+        }
 
+        final Centre modelCentre;
+        if (centre == null || centre.isEmpty()) {
+            modelCentre = Centre.DEFAULT_CENTRE;
+        } else {
+            modelCentre = new Centre(centre);
+        }
+
+        switch (safeRole) {
+        case "Student":
+            return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelCentre);
+        case "Mentor":
+            return new Mentor(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelCentre);
+        default:
+            return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
+        }
+    }
 }

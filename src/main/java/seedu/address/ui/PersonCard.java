@@ -7,7 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Mentor;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 
 /**
  * A UI component that displays information of a {@code Person}.
@@ -43,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private Label centre;
+    @FXML
     private Label remark;
 
     /**
@@ -59,6 +63,14 @@ public class PersonCard extends UiPart<Region> {
         Label roleLabel = new Label(person.getClass().getName());
         roleLabel.getStyleClass().add("role-label");
         role.getChildren().add(roleLabel);
+        if (person instanceof Student) {
+            centre.setText("Centre: " + ((Student) person).getCentre().toString());
+        } else if (person instanceof Mentor) {
+            centre.setText("Centre: " + ((Mentor) person).getCentre().toString());
+        } else {
+            centre.setManaged(false);
+            centre.setVisible(false);
+        }
         remark.setText(person.getRemark().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
