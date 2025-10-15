@@ -29,7 +29,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.person.Role;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
@@ -108,7 +107,7 @@ public class EditCommand extends Command {
         Remark updatedRemark = personToEdit.getRemark();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        Role updateRole = editPersonDescriptor.getRole().orElse(new Role(personToEdit.getClass().getName()));
+        String updateRole = editPersonDescriptor.getRole().orElse("Person");
         Person person;
 
         switch (updateRole.toString()) {
@@ -158,7 +157,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
-        private Role role;
+        private String role;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -215,11 +214,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setRole(Role role) {
+        public void setRole(String role) {
             this.role = role;
         }
 
-        private Optional<Role> getRole() {
+        private Optional<String> getRole() {
             return Optional.ofNullable(role);
         }
 
