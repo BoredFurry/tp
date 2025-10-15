@@ -6,7 +6,7 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Student in the address book.
- * Guarantees: details are present and not null, field values are validated.
+ * Guarantees: details are present and not null except mentor, field values are validated.
  */
 public class Student extends Person {
     private Mentor mentor;
