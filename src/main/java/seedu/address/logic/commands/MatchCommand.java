@@ -43,7 +43,7 @@ public class MatchCommand extends Command {
         Person studentToMatch = lastShownList.get(student.getZeroBased());
 
         if (mentorToMatch instanceof Mentor mentorObj && studentToMatch instanceof Student studentObj) {
-            mentorObj.addStudent(studentObj);
+            studentObj.setMentor(mentorObj);
         } else {
             throw new CommandException(Messages.MESSAGE_INVALID_ROLES_MATCHED);
         }

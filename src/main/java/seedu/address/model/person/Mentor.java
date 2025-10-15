@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -10,7 +9,6 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated.
  */
 public class Mentor extends Person {
-    private final ArrayList<Student> students;
     /**
      * Every field must be present and not null.
      *
@@ -23,14 +21,5 @@ public class Mentor extends Person {
      */
     public Mentor(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
         super(name, phone, email, address, remark, tags);
-        this.students = new ArrayList<>();
-    }
-
-    public ArrayList<Student> getStudents() {
-        return students;
-    }
-
-    public void addStudent(Student student) {
-        this.students.add(student);
     }
 }
