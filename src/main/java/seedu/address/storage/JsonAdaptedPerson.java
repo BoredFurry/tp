@@ -66,7 +66,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        role = source.getClass().getSimpleName();
+        role = source.getRole();
     }
 
     /**

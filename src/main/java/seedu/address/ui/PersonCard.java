@@ -56,7 +56,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        Label roleLabel = new Label(person.getClass().getSimpleName());
+        Label roleLabel = new Label(person.getRole());
         roleLabel.getStyleClass().add("role-label");
         role.getChildren().add(roleLabel);
         remark.setText(person.getRemark().value);
