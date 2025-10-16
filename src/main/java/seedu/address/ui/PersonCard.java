@@ -48,6 +48,8 @@ public class PersonCard extends UiPart<Region> {
     private Label centre;
     @FXML
     private Label remark;
+    @FXML
+    private Label mentor;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -72,6 +74,15 @@ public class PersonCard extends UiPart<Region> {
             centre.setVisible(false);
         }
         remark.setText(person.getRemark().value);
+        String mentorToMatch = "";
+        if (person instanceof Student student) {
+            mentorToMatch = "Mentor: ";
+            if (student.getMentor() != null) {
+                mentorToMatch += student.getMentor().getName().fullName;
+            }
+        }
+        mentor.setText(mentorToMatch);
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

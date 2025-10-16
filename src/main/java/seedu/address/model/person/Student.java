@@ -14,6 +14,7 @@ public class Student extends Person {
 
     private final Centre centre;
     private Mentor mentor;
+    private String mentorString;
 
     /**
      * Every field must be present and not null.
@@ -30,10 +31,23 @@ public class Student extends Person {
         super(name, phone, email, address, remark, tags);
         this.centre = centre;
         this.mentor = null;
+        this.mentorString = "";
+    }
+
+    public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, Centre centre,
+                   String mentorString) {
+        super(name, phone, email, address, remark, tags);
+        this.centre = centre;
+        this.mentor = null;
+        this.mentorString = mentorString;
     }
 
     public Centre getCentre() {
         return centre;
+    }
+
+    public String getMentorString() {
+        return mentorString;
     }
 
     @Override

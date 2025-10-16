@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -44,6 +45,8 @@ public class MatchCommand extends Command {
 
         if (mentorToMatch instanceof Mentor mentorObj && studentToMatch instanceof Student studentObj) {
             studentObj.setMentor(mentorObj);
+            model.setPerson(studentToMatch, studentObj);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         } else {
             throw new CommandException(Messages.MESSAGE_INVALID_ROLES_MATCHED);
         }
