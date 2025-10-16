@@ -116,6 +116,27 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds and returns a {@link Person} object based on the role of the individual.
+     * The method checks the role (either "Mentor" or "Student") and creates the appropriate
+     * subclass of {@link Person}. If the role does not match either "Mentor" or "Student",
+     * a generic {@link Person} is created.
+     *
+     * <p>The method uses the following fields to construct the {@link Person} object:</p>
+     * <ul>
+     *   <li><b>name</b>: The name of the person.</li>
+     *   <li><b>phone</b>: The phone number of the person.</li>
+     *   <li><b>email</b>: The email address of the person.</li>
+     *   <li><b>address</b>: The physical address of the person.</li>
+     *   <li><b>remark</b>: Any additional remarks related to the person.</li>
+     *   <li><b>tags</b>: A list of tags associated with the person.</li>
+     * </ul>
+     *
+     * @return A {@link Person} object that corresponds to the specified role.
+     *         If the role is "Mentor", a {@link Mentor} object is returned.
+     *         If the role is "Student", a {@link Student} object is returned.
+     *         If the role is neither "Mentor" nor "Student", a generic {@link Person} object is returned.
+     */
     public Person build() {
         Person person;
 
