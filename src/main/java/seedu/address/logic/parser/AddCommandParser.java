@@ -56,10 +56,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Person person;
 
         switch (role) {
-        case "Mentor":
+        case "MENTOR":
             person = new Mentor(name, phone, email, address, remark, tagList, centre);
             break;
-        case "Student":
+        case "STUDENT":
             person = new Student(name, phone, email, address, remark, tagList, centre);
             break;
         default:

@@ -56,7 +56,6 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        this.role = role;
     }
 
     /**
@@ -69,19 +68,18 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         remark = source.getRemark().value;
         if (source instanceof Student) {
-            role = "Student";
+            role = source.getRole();
             centre = ((Student) source).getCentre().toString();
         } else if (source instanceof Mentor) {
-            role = "Mentor";
+            role = source.getRole();
             centre = ((Mentor) source).getCentre().toString();
         } else {
-            role = "Person";
+            role = source.getRole();
             centre = Centre.DEFAULT_CENTRE.toString();
         }
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        role = source.getRole();
     }
 
     /**
