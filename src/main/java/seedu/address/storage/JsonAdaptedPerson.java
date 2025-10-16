@@ -35,7 +35,7 @@ class JsonAdaptedPerson {
     private final String remark;
     private final String centre;
     private final String role;
-    private final String mentor;
+    private String mentor;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -70,18 +70,19 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         remark = source.getRemark().value;
+        mentor = "";
         if (source instanceof Student s) {
             role = source.getRole();
             centre = s.getCentre().toString();
-            mentor = s.getMentor().getName().fullName;
+            if (s.getMentor() != null) {
+                mentor += s.getMentor().getName().fullName;
+            }
         } else if (source instanceof Mentor m) {
             role = source.getRole();
             centre = m.getCentre().toString();
-            mentor = "";
         } else {
             role = source.getRole();
             centre = Centre.DEFAULT_CENTRE.toString();
-            mentor = "";
         }
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
