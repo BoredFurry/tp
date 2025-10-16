@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,10 +11,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Centre;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Role;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,6 +23,12 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    public static final String[] VALID_ROLES = new String[]{"PERSON", "MENTOR", "STUDENT"};
+
+    public static final String MESSAGE_INVALID_ROLE =
+            "Roles should only contain alphanumeric characters and spaces, and it should not be blank"
+                    + "Valid roles consist of {\"PERSON\", \"MENTOR\", \"STUDENT\"}";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -102,13 +109,28 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code role} is invalid.
      */
-    public static Role parseRole(String role) throws ParseException {
+    public static String parseRole(String role) throws ParseException {
         requireNonNull(role);
         String trimmedRole = role.trim();
-        if (!Role.isValidRole(trimmedRole)) {
-            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
+        if (!Arrays.asList(VALID_ROLES).contains(trimmedRole)) {
+            throw new ParseException(MESSAGE_INVALID_ROLE);
         }
-        return new Role(trimmedRole);
+        return trimmedRole;
+    }
+
+    /**
+     * Parses a {@code String centre} into a {@code Centre}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code centre} is invalid.
+     */
+    public static Centre parseCentre(String centre) throws ParseException {
+        requireNonNull(centre);
+        String trimmedCentre = centre.trim();
+        if (!Centre.isValidCentre(trimmedCentre)) {
+            throw new ParseException(Centre.MESSAGE_CONSTRAINTS);
+        }
+        return new Centre(trimmedCentre);
     }
 
     /**

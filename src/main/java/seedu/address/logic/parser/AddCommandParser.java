@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CENTRE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -14,13 +15,13 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Centre;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Mentor;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.person.Role;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
@@ -37,7 +38,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_ROLE, PREFIX_TAG);
+                        PREFIX_ROLE, PREFIX_CENTRE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROLE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -49,17 +50,23 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
+        String role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
+        Centre centre;
+        if (argMultimap.getValue(PREFIX_CENTRE).isPresent()) {
+            centre = ParserUtil.parseCentre(argMultimap.getValue(PREFIX_CENTRE).get());
+        } else {
+            centre = Centre.DEFAULT_CENTRE;
+        }
         Remark remark = new Remark("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Person person;
 
-        switch (role.toString()) {
-        case "Mentor":
-            person = new Mentor(name, phone, email, address, remark, tagList);
+        switch (role) {
+        case "MENTOR":
+            person = new Mentor(name, phone, email, address, remark, tagList, centre);
             break;
-        case "Student":
-            person = new Student(name, phone, email, address, remark, tagList);
+        case "STUDENT":
+            person = new Student(name, phone, email, address, remark, tagList, centre);
             break;
         default:
             person = new Person(name, phone, email, address, remark, tagList);

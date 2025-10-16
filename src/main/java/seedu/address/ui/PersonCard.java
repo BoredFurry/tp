@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.person.Mentor;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 
@@ -44,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private Label centre;
+    @FXML
     private Label remark;
     @FXML
     private Label mentor;
@@ -59,9 +62,17 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        Label roleLabel = new Label(person.getClass().getName());
+        Label roleLabel = new Label(person.getRole());
         roleLabel.getStyleClass().add("role-label");
         role.getChildren().add(roleLabel);
+        if (person instanceof Student) {
+            centre.setText("Centre: " + ((Student) person).getCentre().toString());
+        } else if (person instanceof Mentor) {
+            centre.setText("Centre: " + ((Mentor) person).getCentre().toString());
+        } else {
+            centre.setManaged(false);
+            centre.setVisible(false);
+        }
         remark.setText(person.getRemark().value);
         String mentorToMatch = "";
         if (person instanceof Student student && student.getMentor() != null) {
