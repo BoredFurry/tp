@@ -55,7 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Person person;
 
-        switch (role.toString()) {
+        switch (role) {
         case "Mentor":
             person = new Mentor(name, phone, email, address, remark, tagList, centre);
             break;

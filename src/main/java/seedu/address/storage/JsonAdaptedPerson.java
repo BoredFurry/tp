@@ -56,6 +56,7 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.role = role;
     }
 
     /**
@@ -80,6 +81,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        role = source.getRole();
     }
 
     /**
@@ -129,6 +131,11 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
+
+        if (role == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Role"));
+        }
+        final String modelRole = role;
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final String safeRole;
