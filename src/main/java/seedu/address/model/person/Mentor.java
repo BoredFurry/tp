@@ -1,11 +1,14 @@
 package seedu.address.model.person;
 
+import java.util.Set;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
-import java.util.Objects;
-import java.util.Set;
-
+/**
+ * Represents a Mentor in the address book.
+ * Guarantees: details are present and not null.
+ */
 public class Mentor extends Person {
 
     private final Centre centre;

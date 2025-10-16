@@ -120,10 +120,12 @@ public class EditCommand extends Command {
 
         switch (updateRole.toString()) {
         case "Mentor":
-            person = new Mentor(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags, updatedCentre);
+            person = new Mentor(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark,
+                    updatedTags, updatedCentre);
             break;
         case "Student":
-            person = new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags, updatedCentre);
+            person = new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark,
+                    updatedTags, updatedCentre);
             break;
         default:
             person = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);

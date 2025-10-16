@@ -20,10 +20,12 @@ public class CentreContainsKeywordsPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         if (person instanceof Student) {
             return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(((Student) person).getCentre().toString(), keyword));
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(((Student) person)
+                            .getCentre().toString(), keyword));
         } else if (person instanceof Mentor) {
             return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(((Mentor) person).getCentre().toString(), keyword));
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(((Mentor) person)
+                            .getCentre().toString(), keyword));
         } else {
             return false;
         }
