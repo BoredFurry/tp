@@ -10,8 +10,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Mentor;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Student;
 
 /**
  * Changes the remark of an existing person in the address book.
@@ -57,9 +59,37 @@ public class RemarkCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), remark, personToEdit.getTags());
+        Person editedPerson;
+
+        if (personToEdit instanceof Mentor mentor) {
+            editedPerson = new Mentor(
+                    mentor.getName(),
+                    mentor.getPhone(),
+                    mentor.getEmail(),
+                    mentor.getAddress(),
+                    remark,
+                    mentor.getTags(),
+                    mentor.getCentre());
+        } else if (personToEdit instanceof Student student) {
+            Student editedStudent = new Student(
+                    student.getName(),
+                    student.getPhone(),
+                    student.getEmail(),
+                    student.getAddress(),
+                    remark,
+                    student.getTags(),
+                    student.getCentre());
+            editedStudent.setMentor(student.getMentor());
+            editedPerson = editedStudent;
+        } else {
+            editedPerson = new Person(
+                    personToEdit.getName(),
+                    personToEdit.getPhone(),
+                    personToEdit.getEmail(),
+                    personToEdit.getAddress(),
+                    remark,
+                    personToEdit.getTags());
+        }
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

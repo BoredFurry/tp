@@ -34,6 +34,18 @@ public class Student extends Person {
         this.mentorString = "";
     }
 
+    /**
+     * Overloaded constructor with mentor name for address book generation from json.
+     *
+     * @param name
+     * @param phone
+     * @param email
+     * @param address
+     * @param remark
+     * @param tags
+     * @param centre
+     * @param mentorString
+     */
     public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, Centre centre,
                    String mentorString) {
         super(name, phone, email, address, remark, tags);
@@ -77,11 +89,19 @@ public class Student extends Person {
     }
     public void setMentor(Mentor mentor) {
         this.mentor = mentor;
+        if (mentor != null) {
+            this.mentorString = mentor.getName().fullName;
+        }
     }
     public Mentor getMentor() {
         return this.mentor;
     }
+
+    /**
+     * Removes mentor.
+     */
     public void removeMentor() {
         this.mentor = null;
+        this.mentorString = "";
     }
 }
