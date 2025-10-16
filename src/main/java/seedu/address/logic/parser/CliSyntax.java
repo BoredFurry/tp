@@ -15,4 +15,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_REMARK = new Prefix("rm/");
     public static final Prefix PREFIX_MENTOR = new Prefix("m/");
     public static final Prefix PREFIX_STUDENT = new Prefix("s/");
+    public static final Prefix PREFIX_CENTRE = new Prefix("c/");
 }

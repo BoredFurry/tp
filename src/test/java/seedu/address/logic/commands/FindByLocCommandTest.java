@@ -18,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.AddressContainsKeywordsPredicate;
 
 public class FindByLocCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
