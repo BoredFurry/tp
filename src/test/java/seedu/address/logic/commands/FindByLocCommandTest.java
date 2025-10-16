@@ -19,7 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-public class FindByLocCommandTest {
+public class FindByAddressCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -30,14 +30,14 @@ public class FindByLocCommandTest {
         AddressContainsKeywordsPredicate secondPredicate =
                 new AddressContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindByLocCommand findFirstCommand = new FindByLocCommand(firstPredicate);
-        FindByLocCommand findSecondCommand = new FindByLocCommand(secondPredicate);
+        FindByAddressCommand findFirstCommand = new FindByAddressCommand(firstPredicate);
+        FindByAddressCommand findSecondCommand = new FindByAddressCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindByLocCommand findFirstCommandCopy = new FindByLocCommand(firstPredicate);
+        FindByAddressCommand findFirstCommandCopy = new FindByAddressCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -54,7 +54,7 @@ public class FindByLocCommandTest {
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         AddressContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindByLocCommand command = new FindByLocCommand(predicate);
+        FindByAddressCommand command = new FindByAddressCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -64,7 +64,7 @@ public class FindByLocCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         AddressContainsKeywordsPredicate predicate = preparePredicate("Jurong Clementi wall");
-        FindByLocCommand command = new FindByLocCommand(predicate);
+        FindByAddressCommand command = new FindByAddressCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         System.out.println(expectedModel.getFilteredPersonList());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -74,8 +74,8 @@ public class FindByLocCommandTest {
     @Test
     public void toStringMethod() {
         AddressContainsKeywordsPredicate predicate = new AddressContainsKeywordsPredicate(Arrays.asList("keyword"));
-        FindByLocCommand findCommand = new FindByLocCommand(predicate);
-        String expected = FindByLocCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        FindByAddressCommand findCommand = new FindByAddressCommand(predicate);
+        String expected = FindByAddressCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());
     }
 
