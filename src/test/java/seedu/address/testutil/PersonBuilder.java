@@ -137,14 +137,8 @@ public class PersonBuilder {
      *         If the role is "Student", a {@link Student} object is returned.
      *         If the role is neither "Mentor" nor "Student", a generic {@link Person} object is returned.
      */
-    public Person build(String... givenRole) {
+    public Person build() {
         Person person;
-        String role;
-        if (givenRole.length == 0) {
-            role = this.role;
-        } else {
-            role = givenRole[0];
-        }
 
         switch (role) {
         case "Mentor":
