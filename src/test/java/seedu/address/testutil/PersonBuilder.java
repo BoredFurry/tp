@@ -111,8 +111,8 @@ public class PersonBuilder {
     /**
      * Sets the role of the {@code Person} that we are building.
      */
-    public PersonBuilder withRole(String validRoleAmy) {
-        this.role = validRoleAmy;
+    public PersonBuilder withRole(String role) {
+        this.role = role;
         return this;
     }
 
@@ -137,8 +137,14 @@ public class PersonBuilder {
      *         If the role is "Student", a {@link Student} object is returned.
      *         If the role is neither "Mentor" nor "Student", a generic {@link Person} object is returned.
      */
-    public Person build() {
+    public Person build(String... givenRole) {
         Person person;
+        String role;
+        if (givenRole.length == 0) {
+            role = this.role;
+        } else {
+            role = givenRole[0];
+        }
 
         switch (role) {
         case "Mentor":
