@@ -35,6 +35,7 @@ class JsonAdaptedPerson {
     private final String remark;
     private final String centre;
     private final String role;
+    private final String mentor;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -45,6 +46,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("remark") String remark, @JsonProperty("role") String role,
                              @JsonProperty("centre") String centre,
+                             @JsonProperty("mentor") String mentor,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
@@ -53,6 +55,7 @@ class JsonAdaptedPerson {
         this.remark = remark;
         this.role = role;
         this.centre = centre;
+        this.mentor = mentor;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -67,15 +70,18 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         remark = source.getRemark().value;
-        if (source instanceof Student) {
+        if (source instanceof Student s) {
             role = source.getRole();
-            centre = ((Student) source).getCentre().toString();
-        } else if (source instanceof Mentor) {
+            centre = s.getCentre().toString();
+            mentor = s.getMentor().getName().fullName;
+        } else if (source instanceof Mentor m) {
             role = source.getRole();
-            centre = ((Mentor) source).getCentre().toString();
+            centre = m.getCentre().toString();
+            mentor = "";
         } else {
             role = source.getRole();
             centre = Centre.DEFAULT_CENTRE.toString();
+            mentor = "";
         }
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -150,9 +156,12 @@ class JsonAdaptedPerson {
             modelCentre = new Centre(centre);
         }
 
+        final String modelMentor = mentor;
+
         switch (safeRole) {
         case "Student":
-            return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelCentre);
+            return new Student(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelCentre,
+                    modelMentor);
         case "Mentor":
             return new Mentor(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelCentre);
         default:

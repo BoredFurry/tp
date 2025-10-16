@@ -75,8 +75,11 @@ public class PersonCard extends UiPart<Region> {
         }
         remark.setText(person.getRemark().value);
         String mentorToMatch = "";
-        if (person instanceof Student student && student.getMentor() != null) {
-            mentorToMatch = "Mentor: " + student.getMentor().getName().fullName;
+        if (person instanceof Student student) {
+            mentorToMatch = "Mentor: ";
+            if (student.getMentor() != null) {
+                mentorToMatch += student.getMentor().getName().fullName;
+            }
         }
         mentor.setText(mentorToMatch);
 

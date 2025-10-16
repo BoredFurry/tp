@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Mentor;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -54,7 +56,20 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+        for (Person person : addressBook.getPersonList()) {
+            if (person instanceof Student s) {
+                String mentorString = s.getMentorString();
+                attachMentor(addressBook, s, mentorString);
+            }
+        }
         return addressBook;
     }
 
+    public void attachMentor(AddressBook addressBook, Student student, String mentorString) {
+        for (Person potentialMentor : addressBook.getPersonList()) {
+            if (potentialMentor instanceof Mentor m && m.getName().fullName.equals(mentorString)) {
+                student.setMentor(m);
+            }
+        }
+    }
 }
