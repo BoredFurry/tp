@@ -16,6 +16,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindByCentreCommand;
 import seedu.address.logic.commands.FindByNameCommand;
+import seedu.address.logic.commands.FindByRoleCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MatchCommand;
@@ -88,6 +89,9 @@ public class AddressBookParser {
 
         case FindByCentreCommand.COMMAND_WORD:
             return new FindByCentreCommandParser().parse(arguments);
+
+        case FindByRoleCommand.COMMAND_WORD:
+            return new FindByRoleCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
