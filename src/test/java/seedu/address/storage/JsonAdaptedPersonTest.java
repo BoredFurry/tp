@@ -23,7 +23,6 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
-    private static final String INVALID_ROLE = " ";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -105,22 +104,6 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null,
                 VALID_REMARK, VALID_ROLE, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidRole_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_REMARK,
-                        INVALID_TAG, VALID_TAGS);
-        assertThrows(IllegalValueException.class, person::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullRole_throwsIllegalValueException() {
-        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_REMARK, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }

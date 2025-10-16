@@ -110,7 +110,7 @@ public class EditCommand extends Command {
         String updateRole = editPersonDescriptor.getRole().orElse("Person");
         Person person;
 
-        switch (updateRole.toString()) {
+        switch (updateRole) {
         case "Mentor":
             person = new Mentor(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
             break;
