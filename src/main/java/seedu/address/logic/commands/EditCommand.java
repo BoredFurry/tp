@@ -104,7 +104,7 @@ public class EditCommand extends Command {
         Remark updatedRemark = personToEdit.getRemark();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        String updateRole = editPersonDescriptor.getRole().orElse("Person");
+        String updateRole = editPersonDescriptor.getRole().orElse(personToEdit.getRole());
         Centre updatedCentre = editPersonDescriptor.getCentre()
                 .orElseGet(() -> {
                     if (personToEdit instanceof Student) {
