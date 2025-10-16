@@ -1,12 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -23,6 +18,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Centre;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Mentor;
 import seedu.address.model.person.Name;
@@ -48,6 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_ROLE + "ROLE] "
+            + "[" + PREFIX_CENTRE + "CENTRE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -108,14 +105,26 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         String updateRole = editPersonDescriptor.getRole().orElse("Person");
+        Centre updatedCentre = editPersonDescriptor.getCentre()
+                .orElseGet(() -> {
+                    if (personToEdit instanceof Student) {
+                        return ((Student) personToEdit).getCentre();
+                    } else if (personToEdit instanceof Mentor) {
+                        return ((Mentor) personToEdit).getCentre();
+                    } else {
+                        return Centre.DEFAULT_CENTRE;
+                    }
+                });
         Person person;
 
         switch (updateRole.toString()) {
         case "Mentor":
-            person = new Mentor(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+            person = new Mentor(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark,
+                    updatedTags, updatedCentre);
             break;
         case "Student":
-            person = new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+            person = new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark,
+                    updatedTags, updatedCentre);
             break;
         default:
             person = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
@@ -158,6 +167,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private String role;
+        private Centre centre;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -172,6 +182,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setRole(toCopy.role);
+            setCentre(toCopy.centre);
             setTags(toCopy.tags);
         }
 
@@ -179,7 +190,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, centre);
         }
 
         public void setName(Name name) {
@@ -222,6 +233,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(role);
         }
 
+        public void setCentre(Centre centre) {
+            this.centre = centre;
+        }
+
+        public Optional<Centre> getCentre() {
+            return Optional.ofNullable(centre);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -255,6 +274,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(centre, otherEditPersonDescriptor.centre)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -265,6 +285,7 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)
+                    .add("centre", centre)
                     .add("tags", tags)
                     .toString();
         }

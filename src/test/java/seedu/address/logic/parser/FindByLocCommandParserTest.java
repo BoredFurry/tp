@@ -8,9 +8,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindByLocCommand;
-import seedu.address.model.person.AddressContainsKeywordsPredicate;
-
 public class FindByLocCommandParserTest {
 
     private FindByLocCommandParser parser = new FindByLocCommandParser();

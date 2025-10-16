@@ -12,6 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Centre;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -116,6 +117,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_ROLE);
         }
         return trimmedRole;
+    }
+
+    /**
+     * Parses a {@code String centre} into a {@code Centre}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code centre} is invalid.
+     */
+    public static Centre parseCentre(String centre) throws ParseException {
+        requireNonNull(centre);
+        String trimmedCentre = centre.trim();
+        if (!Centre.isValidCentre(trimmedCentre)) {
+            throw new ParseException(Centre.MESSAGE_CONSTRAINTS);
+        }
+        return new Centre(trimmedCentre);
     }
 
     /**
