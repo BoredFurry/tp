@@ -8,7 +8,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Mentor;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Student;
 
 /**
  * Matches a tutor and tutee.
@@ -39,8 +41,10 @@ public class MatchCommand extends Command {
 
         Person mentorToMatch = lastShownList.get(mentor.getZeroBased());
         Person studentToMatch = lastShownList.get(student.getZeroBased());
-        if (!mentorToMatch.getClass().getName().equals("mentor")
-                || !studentToMatch.getClass().getName().toString().equals("student")) {
+
+        if (mentorToMatch instanceof Mentor mentorObj && studentToMatch instanceof Student studentObj) {
+            studentObj.setMentor(mentorObj);
+        } else {
             throw new CommandException(Messages.MESSAGE_INVALID_ROLES_MATCHED);
         }
 

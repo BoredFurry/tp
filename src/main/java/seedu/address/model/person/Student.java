@@ -4,8 +4,14 @@ import seedu.address.model.tag.Tag;
 
 import java.util.Set;
 
-public class Student extends Person {
+import seedu.address.model.tag.Tag;
 
+/**
+ * Represents a Student in the address book.
+ * Guarantees: details are present and not null except mentor, field values are validated.
+ */
+public class Student extends Person {
+    private Mentor mentor;
     /**
      * Every field must be present and not null.
      *
@@ -18,5 +24,15 @@ public class Student extends Person {
      */
     public Student(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
         super(name, phone, email, address, remark, tags);
+        this.mentor = null;
+    }
+    public void setMentor(Mentor mentor) {
+        this.mentor = mentor;
+    }
+    public Mentor getMentor() {
+        return this.mentor;
+    }
+    public void removeMentor() {
+        this.mentor = null;
     }
 }
