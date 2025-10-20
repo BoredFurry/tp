@@ -6,6 +6,9 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "remark" : "",
+    "role" : "MENTOR",
+    "centre" : "Centre Unassigned",
+    "mentor" : "",
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -13,6 +16,9 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "remark" : "",
+    "role" : "STUDENT",
+    "centre" : "Nan Hua High School",
+    "mentor" : "Alice Pauline",
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -20,6 +26,9 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "remark" : "",
+    "role" : "MENTOR",
+    "centre" : "New Town Primary School",
+    "mentor" : "",
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -27,6 +36,9 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "remark" : "",
+    "role" : "MENTOR",
+    "centre" : "New Town Primary School",
+    "mentor" : "",
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -34,6 +46,9 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "remark" : "",
+    "role" : "STUDENT",
+    "centre" : "Jurong Primary School",
+    "mentor" : "",
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -41,6 +56,9 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "remark" : "",
+    "role" : "STUDENT",
+    "centre" : "Punggol Primary School",
+    "mentor" : "",
     "tags" : [ ]
   }, {
     "name" : "George Best",
@@ -48,6 +66,9 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "remark" : "",
+    "role" : "MENTOR",
+    "centre" : "Pioneer Primary School",
+    "mentor" : "",
     "tags" : [ ]
   } ]
 }
