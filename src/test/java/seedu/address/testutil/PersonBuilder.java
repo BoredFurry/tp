@@ -62,6 +62,9 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
     }
 
+    /**
+     * Initializes the PersonBuilder with the data of {@code personToCopy} as a Student.
+     */
     public PersonBuilder(Student personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
@@ -72,6 +75,9 @@ public class PersonBuilder {
         centre = personToCopy.getCentre();
     }
 
+    /**
+     * Initializes the PersonBuilder with the data of {@code personToCopy} as a Mentor.
+     */
     public PersonBuilder(Mentor personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();

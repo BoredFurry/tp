@@ -112,21 +112,21 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
-//    @Test
-//    public void toModelType_invalidRole_throwsIllegalValueException() {
-//        JsonAdaptedPerson person =
-//                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_REMARK,
-//                        VALID_CENTRE, INVALID_ROLE, NULL_MENTOR, VALID_TAGS);
-//        assertThrows(IllegalValueException.class, person::toModelType);
-//    }
+    //    @Test
+    //    public void toModelType_invalidRole_throwsIllegalValueException() {
+    //        JsonAdaptedPerson person =
+    //                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_REMARK,
+    //                        VALID_CENTRE, INVALID_ROLE, NULL_MENTOR, VALID_TAGS);
+    //        assertThrows(IllegalValueException.class, person::toModelType);
+    //    }
 
-//    @Test
-//    public void toModelType_nullRole_throwsIllegalValueException() {
-//        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-//                VALID_REMARK, VALID_CENTRE, null, VALID_MENTOR, VALID_TAGS);
-//        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
-//        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-//    }
+    //    @Test
+    //    public void toModelType_nullRole_throwsIllegalValueException() {
+    //        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+    //                VALID_REMARK, VALID_CENTRE, null, VALID_MENTOR, VALID_TAGS);
+    //        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
+    //        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    //    }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
