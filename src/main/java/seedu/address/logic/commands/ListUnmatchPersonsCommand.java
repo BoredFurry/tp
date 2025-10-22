@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Model;
+import seedu.address.model.person.MentorHasStudentsPredicate;
 import seedu.address.model.person.StudentHasMentorsPredicate;
 
 import static java.util.Objects.requireNonNull;
@@ -12,13 +12,14 @@ import static java.util.Objects.requireNonNull;
 public class ListUnmatchPersonsCommand extends Command {
     public static final String COMMAND_WORD = "listunmatched";
 
-    public static final String MESSAGE_SUCCESS = "Listed all mentors and students who have been matched";
+    public static final String MESSAGE_SUCCESS = "Listed all mentors and students who have not been matched";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(new StudentHasMentorsPredicate(model));
+        model.updateFilteredPersonList(new MentorHasStudentsPredicate(model));
+        model.updateFilteredPersonList(new StudentHasMentorsPredicate());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
