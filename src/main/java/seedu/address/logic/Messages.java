@@ -20,6 +20,10 @@ public class Messages {
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_INVALID_ROLES_MATCHED =
             "Matches between people of these roles are not allowed!";
+    public static final String MESSAGE_INVALID_ROLES_UNMATCHED =
+            "Unmatching between people of these roles is not allowed!";
+    public static final String MESSAGE_UNMATCH_BETWEEN_UNMATCHED_PERSONS =
+            "Unable to unmatch, these two people are not matched to begin with!";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
