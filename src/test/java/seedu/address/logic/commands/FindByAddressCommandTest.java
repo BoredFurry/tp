@@ -5,13 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-
-import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,9 +21,9 @@ public class FindByAddressCommandTest {
     @Test
     public void equals() {
         AddressContainsKeywordsPredicate firstPredicate =
-                new AddressContainsKeywordsPredicate(Collections.singletonList("first"));
+                new AddressContainsKeywordsPredicate("first");
         AddressContainsKeywordsPredicate secondPredicate =
-                new AddressContainsKeywordsPredicate(Collections.singletonList("second"));
+                new AddressContainsKeywordsPredicate("second");
 
         FindByAddressCommand findFirstCommand = new FindByAddressCommand(firstPredicate);
         FindByAddressCommand findSecondCommand = new FindByAddressCommand(secondPredicate);
@@ -52,29 +46,17 @@ public class FindByAddressCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_allPersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size());
         AddressContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindByAddressCommand command = new FindByAddressCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
-    }
-
-    @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        AddressContainsKeywordsPredicate predicate = preparePredicate("Jurong Clementi wall");
-        FindByAddressCommand command = new FindByAddressCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        System.out.println(expectedModel.getFilteredPersonList());
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, CARL), model.getFilteredPersonList());
     }
 
     @Test
     public void toStringMethod() {
-        AddressContainsKeywordsPredicate predicate = new AddressContainsKeywordsPredicate(Arrays.asList("keyword"));
+        AddressContainsKeywordsPredicate predicate = new AddressContainsKeywordsPredicate("keyword");
         FindByAddressCommand findCommand = new FindByAddressCommand(predicate);
         String expected = FindByAddressCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());
@@ -84,7 +66,6 @@ public class FindByAddressCommandTest {
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     private AddressContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new AddressContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        return new AddressContainsKeywordsPredicate(userInput);
     }
 }
-
