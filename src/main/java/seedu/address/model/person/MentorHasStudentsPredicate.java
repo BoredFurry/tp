@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import seedu.address.model.Model;
-
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
