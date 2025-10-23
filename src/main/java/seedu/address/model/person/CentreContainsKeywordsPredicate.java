@@ -16,7 +16,7 @@ public class CentreContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        if (person instanceof Student student) {m
+        if (person instanceof Student student) {
             return student.getCentre().value.toLowerCase().contains(keywords.toLowerCase());
         } else if (person instanceof Mentor mentor) {
             return mentor.getCentre().value.toLowerCase().contains(keywords.toLowerCase());
