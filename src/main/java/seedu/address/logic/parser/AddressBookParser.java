@@ -23,6 +23,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListUnmatchPersonsCommand;
 import seedu.address.logic.commands.MatchCommand;
 import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.logic.commands.ShowStudentCommand;
 import seedu.address.logic.commands.UnmatchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -98,6 +99,9 @@ public class AddressBookParser {
 
         case FindByAddressCommand.COMMAND_WORD:
             return new FindByAddressCommandParser().parse(arguments);
+
+        case ShowStudentCommand.COMMAND_WORD:
+            return new ShowStudentCommandParser().parse(arguments);
 
         case ListUnmatchPersonsCommand.COMMAND_WORD:
             return new ListUnmatchPersonsCommand();
