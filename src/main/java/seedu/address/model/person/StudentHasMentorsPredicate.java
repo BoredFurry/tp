@@ -9,9 +9,7 @@ public class StudentHasMentorsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        String role = person.getRole();
-
-        if (role.equals("Student")) {
+        if (person instanceof Student) {
             Student castStudent = (Student) person;
             Mentor assignedMentor = castStudent.getMentor();
             return assignedMentor == null;

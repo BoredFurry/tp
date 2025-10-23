@@ -85,6 +85,7 @@ public class Student extends Person {
                 .add("remark", getRemark())
                 .add("tags", getTags())
                 .add("centre", centre)
+                .add("Mentor", mentorString)
                 .toString();
     }
     public void setMentor(Mentor mentor) {
@@ -103,5 +104,9 @@ public class Student extends Person {
     public void removeMentor() {
         this.mentor = null;
         this.mentorString = "";
+    }
+
+    public boolean hasMentor() {
+        return mentor != null;
     }
 }

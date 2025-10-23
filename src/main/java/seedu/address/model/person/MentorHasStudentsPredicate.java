@@ -5,56 +5,48 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.function.Predicate;
 
+
 /**
- * Tests that a {@code Mentor} has been assigned to a {@code Student}.
+ * A predicate that checks whether a {@link Mentor} has been assigned to at least one {@link Student},
+ * or whether a {@link Student} has been assigned a {@link Mentor}.
+ * Specifically:
+ *   For a {@code Mentor}, the predicate returns {@code true} if the mentor has <em>no</em> assigned students.
+ *   For a {@code Student}, the predicate returns {@code true} if the student has <em>no</em> assigned mentor.
+ *   For any other type of {@code Person}, the predicate always returns {@code true}.
  */
 public class MentorHasStudentsPredicate implements Predicate<Person> {
-    /**
-     * A list of {@code Person} which the class will check through to find a {@code Student} with the provided
-     * {@code Mentor}.
-     */
-    private final List<Person> personList;
 
     /**
-     * Constructs a {@code MentorHasStudentsPredicate} using the specified list of persons.
-     * This constructor ensures that the provided list is not {@code null}.
-     * It also logs the list of persons to the console for debugging purposes.
+     * A list of {@link Mentor}s who have at least one assigned {@link Student}.
+     */
+    private final List<Mentor> assignedMentorsList;
+
+    /**
+     * Constructs a {@code MentorHasStudentsPredicate} using the specified list of {@link Person} objects.
+     * This constructor collects all mentors who are currently assigned to students in the provided list.
      *
-     * @param personList the list of {@link Person} objects associated with this predicate
+     * @param personList the list of {@link Person} objects to check for mentor–student relationships
      * @throws NullPointerException if {@code personList} is {@code null}
      */
     public MentorHasStudentsPredicate(List<Person> personList) {
         requireNonNull(personList);
-        System.out.println("constructor: " + personList + "\n");
-        this.personList = personList;
+        this.assignedMentorsList = personList.stream().filter(person -> person instanceof Student)
+                .filter(student -> ((Student) student).hasMentor())
+                .map(assignedStudent -> ((Student) assignedStudent).getMentor()).toList();
     }
 
     @Override
     public boolean test(Person person) {
-        String role = person.getRole();
-
-        if (role.equals("Mentor")) {
-            System.out.println("currlist: " + personList + "\n");
-            for (Person currPerson : personList) {
-                if (currPerson.getRole().equals("Student") && ((Student) currPerson).getMentor() != null) {
-
-                    System.out.println("In loop, Current person:" + currPerson + "\n");
-                    System.out.println("Is student and mentor == person is "
-                            + ((Student) currPerson).getMentor().equals(person) + "\n");
-
-                    if (((Student) currPerson).getMentor().equals(person)) {
-                        System.out.println("reached\n");
-                        return false;
-                    }
-                }
-            }
+        if (person instanceof Mentor) {
+            return !assignedMentorsList.contains(person);
         }
 
-        if (role.equals("Student") || role.equals("Person")) {
-            System.out.println(person + " is not student");
-            return false;
+        if (person instanceof Student) {
+            Student castStudent = (Student) person;
+            Mentor assignedMentor = castStudent.getMentor();
+            return assignedMentor == null;
         }
 
-        return false;
+        return true;
     }
 }
