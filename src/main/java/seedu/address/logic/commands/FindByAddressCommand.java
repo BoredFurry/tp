@@ -15,9 +15,9 @@ public class FindByAddressCommand extends Command {
 
     public static final String COMMAND_WORD = "findbyaddress";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose addresses contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose addresses contain "
+            + "the string (case-insensitive) and displays them as a list with index numbers.\n"
+            + "Parameter: KEYWORD\n"
             + "Example: " + COMMAND_WORD + " Clementi Avenue 5";
 
     private final AddressContainsKeywordsPredicate predicate;

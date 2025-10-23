@@ -93,10 +93,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_findbyaddress() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String keywords = "Foo";
         FindByAddressCommand command = (FindByAddressCommand) parser.parseCommand(
-                FindByAddressCommand.COMMAND_WORD + " "
-                        + keywords.stream().collect(Collectors.joining(" ")));
+                FindByAddressCommand.COMMAND_WORD + " " + keywords);
         assertEquals(new FindByAddressCommand(new AddressContainsKeywordsPredicate(keywords)), command);
     }
 

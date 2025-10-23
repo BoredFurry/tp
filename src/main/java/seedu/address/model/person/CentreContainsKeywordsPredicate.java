@@ -1,31 +1,25 @@
 package seedu.address.model.person;
 
-import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
  * Tests that a {@code Person}'s {@code Centre} matches any of the keywords given.
  */
 public class CentreContainsKeywordsPredicate implements Predicate<Person> {
-    private final List<String> keywords;
+    private final String keywords;
 
-    public CentreContainsKeywordsPredicate(List<String> keywords) {
+    public CentreContainsKeywordsPredicate(String keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Person person) {
-        if (person instanceof Student) {
-            return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(((Student) person)
-                            .getCentre().toString(), keyword));
-        } else if (person instanceof Mentor) {
-            return keywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(((Mentor) person)
-                            .getCentre().toString(), keyword));
+        if (person instanceof Student student) {
+            return student.getCentre().value.toLowerCase().contains(keywords.toLowerCase());
+        } else if (person instanceof Mentor mentor) {
+            return mentor.getCentre().value.toLowerCase().contains(keywords.toLowerCase());
         } else {
             return false;
         }
