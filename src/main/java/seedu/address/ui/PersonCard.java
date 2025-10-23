@@ -73,7 +73,6 @@ public class PersonCard extends UiPart<Region> {
             centre.setManaged(false);
             centre.setVisible(false);
         }
-        remark.setText(person.getRemark().value);
         String mentorToMatch = "";
         if (person instanceof Student student) {
             mentorToMatch = "Mentor: ";
@@ -82,6 +81,7 @@ public class PersonCard extends UiPart<Region> {
             }
         }
         mentor.setText(mentorToMatch);
+        remark.setText(person.getRemark().value);
 
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
