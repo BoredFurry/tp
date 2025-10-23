@@ -15,6 +15,14 @@ public class MentorHasStudentsPredicate implements Predicate<Person> {
      */
     private final List<Person> personList;
 
+    /**
+     * Constructs a {@code MentorHasStudentsPredicate} using the specified list of persons.
+     * This constructor ensures that the provided list is not {@code null}.
+     * It also logs the list of persons to the console for debugging purposes.
+     *
+     * @param personList the list of {@link Person} objects associated with this predicate
+     * @throws NullPointerException if {@code personList} is {@code null}
+     */
     public MentorHasStudentsPredicate(List<Person> personList) {
         requireNonNull(personList);
         System.out.println("constructor: " + personList + "\n");
