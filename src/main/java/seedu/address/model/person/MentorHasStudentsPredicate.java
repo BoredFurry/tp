@@ -1,11 +1,10 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.JsonUtil;
+import java.util.List;
+import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-import java.util.function.Predicate;
 
 /**
  * A predicate that checks whether a {@link Mentor} has been assigned to at least one {@link Student},
