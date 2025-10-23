@@ -81,7 +81,7 @@ public class PersonCard extends UiPart<Region> {
             }
         }
         mentor.setText(mentorToMatch);
-        remark.setText(person.getRemark().value);
+        remark.setText("Remark: " + person.getRemark().value);
 
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
