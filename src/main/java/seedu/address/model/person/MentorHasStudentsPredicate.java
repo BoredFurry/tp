@@ -5,7 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Mentor} has been assigned to a {@code Student}.
+ */
 public class MentorHasStudentsPredicate implements Predicate<Person> {
+    /**
+     * A list of {@code Person} which the class will check through to find a {@code Student} with the provided
+     * {@code Mentor}.
+     */
     private final List<Person> personList;
 
     public MentorHasStudentsPredicate(List<Person> personList) {

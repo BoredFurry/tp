@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.Model;
 import seedu.address.model.person.MentorHasStudentsPredicate;
 import seedu.address.model.person.StudentHasMentorsPredicate;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Lists all mentors and students that have not been matched to a student and mentor respectively.
