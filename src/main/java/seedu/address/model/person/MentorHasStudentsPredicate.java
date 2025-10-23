@@ -31,30 +31,14 @@ public class MentorHasStudentsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        String role = person.getRole();
-
-        if (role.equals("Mentor")) {
-            System.out.println("currlist: " + personList + "\n");
+        if (person instanceof Mentor) {
             for (Person currPerson : personList) {
-                if (currPerson.getRole().equals("Student") && ((Student) currPerson).getMentor() != null) {
-
-                    System.out.println("In loop, Current person:" + currPerson + "\n");
-                    System.out.println("Is student and mentor == person is "
-                            + ((Student) currPerson).getMentor().equals(person) + "\n");
-
-                    if (((Student) currPerson).getMentor().equals(person)) {
-                        System.out.println("reached\n");
-                        return false;
-                    }
+                if (currPerson instanceof Student
+                        && ((Student) currPerson).getMentor().equals(person)) {
+                    return false;
                 }
             }
         }
-
-        if (role.equals("Student") || role.equals("Person")) {
-            System.out.println(person + " is not student");
-            return false;
-        }
-
-        return false;
+        return true;
     }
 }
