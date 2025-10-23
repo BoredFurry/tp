@@ -102,7 +102,7 @@ public class AddressBookParser {
 
         case ShowStudentCommand.COMMAND_WORD:
             return new ShowStudentCommandParser().parse(arguments);
-            
+
         case ListUnmatchPersonsCommand.COMMAND_WORD:
             return new ListUnmatchPersonsCommand();
 
