@@ -2,17 +2,21 @@
 'https://plantuml.com/class-diagram
 
 class Person {
-    +name
-    +email
+    -name
+    -phone
+    -email
+    -address
+    -tags
+    -remark
 }
-
 class Mentor {
-    +centre
+    -centre
 }
-
+'
 class Student {
-    +centre
-    +mentor
+    -centre
+    -mentor
+    -mentorString
 }
 
 Person <|-- Mentor
